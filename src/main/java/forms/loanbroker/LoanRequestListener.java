@@ -85,8 +85,8 @@ public class LoanRequestListener implements MessageListener {
             if (message instanceof ObjectMessage) {
                 System.out.print("\n I got your Loanrequest! The Request was: " + message.toString());
                 response.setText("\n OK");
-
-                LoanRequest lr = (LoanRequest)((ObjectMessage) message).getObject();
+                ObjectMessage om = (ObjectMessage)(message);
+                LoanRequest lr = (LoanRequest)(om.getObject());
 
                 brokerFrame.add(lr);
                 //send request to bank

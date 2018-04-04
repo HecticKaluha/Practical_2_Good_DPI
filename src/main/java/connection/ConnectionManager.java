@@ -5,6 +5,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ConnectionManager {
 
@@ -28,6 +30,7 @@ public class ConnectionManager {
         Connection connection;
         try {
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+            //connectionFactory.setTrustedPackages(new ArrayList<>(Arrays.asList("mix.model.loan.LoanReply,mix.model.loan.LoanRequest".split(","))));
             connection = connectionFactory.createConnection();
         }
         catch (JMSException e){
