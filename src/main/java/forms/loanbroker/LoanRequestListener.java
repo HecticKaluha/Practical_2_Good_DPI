@@ -8,6 +8,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class LoanRequestListener implements MessageListener {
     private Session session;
@@ -54,10 +55,9 @@ public class LoanRequestListener implements MessageListener {
     }
 
     public void setupMessageQueueConsumer() {
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(messageBrokerUrl);
         Connection connection;
         try {
-            connection = connectionFactory.createConnection();
+            connection = ConnectionManager.getNewConnection();
             connection.start();
             this.session = connection.createSession(this.transacted, ackMode);
             Destination adminQueue = this.session.createQueue(messageQueueName);
@@ -69,7 +69,7 @@ public class LoanRequestListener implements MessageListener {
 
             MessageConsumer consumer = this.session.createConsumer(adminQueue);
             consumer.setMessageListener(this);
-        } catch (JMSException e) {
+        } catch (JMSException | CouldNotCreateConnectionException e) {
             System.out.print("\n Something went wrong: " + e.getMessage());
         }
     }
@@ -106,7 +106,7 @@ public class LoanRequestListener implements MessageListener {
             //response.setJMSCorrelationID(message.getJMSCorrelationID());
             //this.replyProducer.send(message.getJMSReplyTo(), response);
         } catch (JMSException e) {
-            System.out.print("\n Something went wrong: " + e.getMessage());
+            System.out.print("\n Something went wrong when trying to serialize : " + e.getMessage());
         }
     }
     public static void main(String[] args) {

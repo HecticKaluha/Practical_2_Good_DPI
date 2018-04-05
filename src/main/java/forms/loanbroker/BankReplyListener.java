@@ -56,10 +56,9 @@ public class BankReplyListener implements MessageListener {
     }
 
     public void setupMessageQueueConsumer() {
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(messageBrokerUrl);
-        Connection connection;
+
         try {
-            connection = connectionFactory.createConnection();
+            Connection connection = ConnectionManager.getNewConnection();
             connection.start();
             this.session = connection.createSession(this.transacted, ackMode);
             Destination adminQueue = this.session.createQueue(messageQueueName);
@@ -71,7 +70,8 @@ public class BankReplyListener implements MessageListener {
 
             MessageConsumer consumer = this.session.createConsumer(adminQueue);
             consumer.setMessageListener(this);
-        } catch (JMSException e) {
+        }
+        catch (JMSException | CouldNotCreateConnectionException e) {
             System.out.print("\n Something went wrong: " + e.getMessage());
         }
     }

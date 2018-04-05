@@ -31,6 +31,8 @@ public class ConnectionManager {
         try {
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
             //connectionFactory.setTrustedPackages(new ArrayList<>(Arrays.asList("mix.model.loan.LoanReply,mix.model.loan.LoanRequest".split(","))));
+            connectionFactory.setTrustAllPackages(true);
+
             connection = connectionFactory.createConnection();
         }
         catch (JMSException e){

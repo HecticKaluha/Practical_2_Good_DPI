@@ -1,5 +1,7 @@
 package forms.loanclient;
 
+import connection.ConnectionManager;
+import exception.CouldNotCreateConnectionException;
 import mix.messaging.RequestReply;
 import mix.model.bank.BankInterestReply;
 import mix.model.bank.BankInterestRequest;
@@ -51,10 +53,8 @@ public class BrokerReplyListener implements MessageListener {
     }
 
     public void setupMessageQueueConsumer() {
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(messageBrokerUrl);
-        Connection connection;
         try {
-            connection = connectionFactory.createConnection();
+            Connection connection = ConnectionManager.getNewConnection();
             connection.start();
             this.session = connection.createSession(this.transacted, ackMode);
             Destination adminQueue = this.session.createQueue(messageQueueName);
@@ -66,7 +66,7 @@ public class BrokerReplyListener implements MessageListener {
 
             MessageConsumer consumer = this.session.createConsumer(adminQueue);
             consumer.setMessageListener(this);
-        } catch (JMSException e) {
+        } catch (JMSException | CouldNotCreateConnectionException e) {
             System.out.print("\n Something went wrong: " + e.getMessage());
         }
     }
