@@ -1,7 +1,6 @@
 package connection;
 
 import exception.CouldNotCreateConnectionException;
-import org.apache.activemq.DestinationDoesNotExistException;
 
 import javax.jms.*;
 import java.io.Serializable;
@@ -12,12 +11,10 @@ public class MessageSenderGateway {
     private Session session;
     private Destination destination;
     private MessageProducer producer;
-    private String channelName;
 
     public MessageSenderGateway(String channelName) {
         try
         {
-            this.channelName = channelName;
             this.connection = ConnectionManager.getNewConnection();
             connection.start();
             this.session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
