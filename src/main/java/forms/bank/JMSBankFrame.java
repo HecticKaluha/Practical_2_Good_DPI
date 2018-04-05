@@ -22,6 +22,7 @@ public class JMSBankFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfReply;
 	private DefaultListModel<RequestReply<BankInterestRequest, BankInterestReply>> listModel = new DefaultListModel<RequestReply<BankInterestRequest, BankInterestReply>>();
+	private LoanBrokerFromBankAppGateway loanBrokerFromBankAppGateway;
 
 	private static BankLoanRequestListener blrl;
 	
@@ -89,6 +90,8 @@ public class JMSBankFrame extends JFrame {
 		contentPane.add(tfReply, gbc_tfReply);
 		tfReply.setColumns(10);
 
+		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("BankToBroker");
+		loanBrokerFromBankAppGateway.setBankFrame(this);
 		/*blrl = new BankLoanRequestListener();
 		blrl.setupMessageQueueConsumer();
 		blrl.setBf(this);*/
@@ -101,7 +104,7 @@ public class JMSBankFrame extends JFrame {
 				BankInterestReply reply = new BankInterestReply(interest,"ABN AMRO");
 				if (rr!= null && reply != null){
 					rr.setReply(reply);
-					blrl.sendResponse(rr);
+					loanBrokerFromBankAppGateway.sendBankReply(rr);
 	                list.repaint();
 					// todo: sent JMS message with the reply to Loan Broker
 				}
@@ -112,8 +115,6 @@ public class JMSBankFrame extends JFrame {
 		gbc_btnSendReply.gridx = 4;
 		gbc_btnSendReply.gridy = 1;
 		contentPane.add(btnSendReply, gbc_btnSendReply);
-
-
 	}
 	public void add(BankInterestRequest bankInterestRequest){
 		listModel.addElement(new RequestReply<>(bankInterestRequest, null));

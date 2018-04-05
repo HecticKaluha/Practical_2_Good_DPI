@@ -5,6 +5,8 @@ C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\for
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\connection\ConnectionManager.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\mix\model\loan\LoanReply.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\bank\JMSBankFrame.java
+C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanbroker\ClientAppGateway.java
+C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\bank\LoanBrokerFromBankAppGateway.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanbroker\JListLine.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanclient\LoanClientFrame.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\mix\model\bank\BankInterestReply.java
@@ -14,5 +16,6 @@ C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\con
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanclient\BrokerReplyListener.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanbroker\LoanBrokerFrame.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\mix\model\loan\LoanRequest.java
+C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanbroker\BankAppGateway.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanbroker\LoanRequestListener.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\mix\messaging\RequestReply.java

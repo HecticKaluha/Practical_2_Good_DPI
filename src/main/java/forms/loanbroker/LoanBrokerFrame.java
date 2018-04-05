@@ -1,10 +1,13 @@
 package forms.loanbroker;
 
+import forms.loanclient.LoanBrokerAppGateway;
+import mix.messaging.RequestReply;
 import mix.model.bank.BankInterestReply;
 import mix.model.bank.BankInterestRequest;
 import mix.model.loan.LoanRequest;
 
 import java.awt.*;
+import java.io.Serializable;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -23,7 +26,9 @@ public class LoanBrokerFrame extends JFrame{
 	private static JScrollPane scrollPane;
 	private static LoanRequestListener ml;
 	private static BankReplyListener bl;
-	
+	private BankAppGateway bankAppGateway;
+	private ClientAppGateway clientAppGateway;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,12 +72,18 @@ public class LoanBrokerFrame extends JFrame{
 		list = new JList<JListLine>(listModel);
 		scrollPane.setViewportView(list);
 
-		ml = new LoanRequestListener();
+		bankAppGateway = new BankAppGateway("BrokerToBank");
+		clientAppGateway = new ClientAppGateway("BrokerToClient");
+
+		bankAppGateway.setLoanBrokerFrame(this);
+		clientAppGateway.setLoanBrokerFrame(this);
+
+		/*ml = new LoanRequestListener();
 		ml.setupMessageQueueConsumer();
 		bl = new BankReplyListener();
 		bl.setupMessageQueueConsumer();
 		ml.setBrokerFrame(this);
-		bl.setBrokerFrame(this);
+		bl.setBrokerFrame(this);*/
 	}
 	
 	 private JListLine getRequestReply(LoanRequest request){
@@ -82,7 +93,6 @@ public class LoanBrokerFrame extends JFrame{
 	    		 return rr;
 	    	 }
 	     }
-	     
 	     return null;
 	   }
 	
@@ -105,5 +115,15 @@ public class LoanBrokerFrame extends JFrame{
 			rr.setBankReply(bankReply);
             list.repaint();
 		}		
+	}
+
+	public void sendToClient(RequestReply<BankInterestRequest, BankInterestReply> bankreply)
+	{
+		clientAppGateway.sendLoanReply(bankreply);
+	}
+	public void senToBank(LoanRequest loanrequest)
+	{
+		BankInterestRequest bir = new BankInterestRequest(loanrequest.getAmount(), loanrequest.getTime());
+		bankAppGateway.sendBankRequest(bir);
 	}
 }
