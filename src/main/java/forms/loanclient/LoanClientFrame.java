@@ -34,6 +34,8 @@ public class LoanClientFrame extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JTextField tfTime;
 
+	private LoanBrokerAppGateway loanBrokerAppGateway;
+
 	private static BrokerReplyListener bl;
 
 	private String correlationID = "Stefano";
@@ -106,6 +108,9 @@ public class LoanClientFrame extends JFrame {
 		gbc_tfTime.gridy = 2;
 		contentPane.add(tfTime, gbc_tfTime);
 		tfTime.setColumns(10);
+
+		loanBrokerAppGateway = new LoanBrokerAppGateway("ClientToBroker");
+		loanBrokerAppGateway.setLoanClientFrame(this);
 		
 		JButton btnQueue = new JButton("send loan request");
 		btnQueue.addActionListener(new ActionListener() {
@@ -113,6 +118,14 @@ public class LoanClientFrame extends JFrame {
 				int ssn = Integer.parseInt(tfSSN.getText());
 				int amount = Integer.parseInt(tfAmount.getText());
 				int time = Integer.parseInt(tfTime.getText());
+
+				LoanRequest request = new LoanRequest(ssn,amount,time);
+				loanBrokerAppGateway.applyForLoan(request);
+				listModel.addElement( new RequestReply<>(request, null));
+
+
+				/*
+
 
 				Session session = null;
 				Connection connection = null;
@@ -127,9 +140,9 @@ public class LoanClientFrame extends JFrame {
 					MessageProducer producer = session.createProducer(destination);
 					producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
-					LoanRequest request = new LoanRequest(ssn,amount,time);
 
-					listModel.addElement( new RequestReply<LoanRequest,LoanReply>(request, null));
+
+
 
 					ObjectMessage message = session.createObjectMessage(request);
 					Destination replyDestination = session.createQueue("LoanRequestReplyQueue");
@@ -158,7 +171,7 @@ public class LoanClientFrame extends JFrame {
 					{
 						System.out.print("\n" + e.getMessage());
 					}
-				}
+				}*/
 			}
 		});
 		GridBagConstraints gbc_btnQueue = new GridBagConstraints();
@@ -175,13 +188,13 @@ public class LoanClientFrame extends JFrame {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 4;
 		contentPane.add(scrollPane, gbc_scrollPane);
-		
+
 		requestReplyList = new JList<RequestReply<LoanRequest,LoanReply>>(listModel);
 		scrollPane.setViewportView(requestReplyList);
 
-		bl = new BrokerReplyListener();
+		/*bl = new BrokerReplyListener();
 		bl.setupMessageQueueConsumer();
-		bl.setLcf(this);
+		bl.setLcf(this);*/
 	}
 	
 	/**
@@ -214,7 +227,6 @@ public class LoanClientFrame extends JFrame {
 			public void run() {
 				try {
 					LoanClientFrame frame = new LoanClientFrame();
-
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

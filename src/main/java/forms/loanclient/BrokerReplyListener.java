@@ -77,7 +77,7 @@ public class BrokerReplyListener implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        try {
+        /*try {
             if (message instanceof ObjectMessage) {
                 System.out.print("\n I got your BrokerReply! The BrokerReply was: " + message.toString());
                 //add reply to list
@@ -99,7 +99,7 @@ public class BrokerReplyListener implements MessageListener {
             }
         } catch (JMSException e) {
             System.out.print("\n Something went wrong: " + e.getMessage());
-        }
+        }*/
     }
     public static void main(String[] args) {
         new BrokerReplyListener();

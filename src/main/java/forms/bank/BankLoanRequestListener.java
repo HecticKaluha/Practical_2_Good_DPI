@@ -1,6 +1,7 @@
 package forms.bank;
 
 import connection.ConnectionManager;
+import connection.MessageSenderGateway;
 import exception.CouldNotCreateConnectionException;
 import mix.messaging.RequestReply;
 import mix.model.bank.BankInterestReply;
@@ -12,40 +13,18 @@ import javax.jms.*;
 public class BankLoanRequestListener implements MessageListener {
     private Session session;
     private boolean transacted = false;
+    private MessageSenderGateway messageSenderGateway;
     private MessageProducer replyProducer;
-
-    private static final int ackMode;
-
-    private static final String messageBrokerUrl;
-
-    private static final String messageQueueName;
 
     private ObjectMessage response =null;
 
     private JMSBankFrame bf;
 
-    static {
-        messageBrokerUrl = "tcp://localhost:61616";
-        messageQueueName = "BankLoanRequestQueue";
-        ackMode = Session.AUTO_ACKNOWLEDGE;
-    }
-
-    private String correlationID = "BankLoanRequestListener";
-
     public BankLoanRequestListener() {
-        /*try {
-            //This message broker is embedded
-            //BrokerService broker = new BrokerService();
-            broker.setPersistent(false);
-            broker.setUseJmx(false);
-            broker.addConnector(messageBrokerUrl);
-            broker.start();
-        } catch (exception e) {
-            //Handle the exception appropriately
-        }*/
+
     }
 
-    public void setupMessageQueueConsumer() {
+    /*public void setupMessageQueueConsumer() {
 
         try {
             Connection connection = ConnectionManager.getNewConnection();
@@ -63,11 +42,7 @@ public class BankLoanRequestListener implements MessageListener {
         } catch (JMSException | CouldNotCreateConnectionException e) {
             System.out.print("\n Something went wrong while setting up a connection: " + e.getMessage());
         }
-    }
-
-    public synchronized void onException(JMSException ex) {
-        System.out.println("\n JMS exception occured.  Shutting down client.");
-    }
+    }*/
 
     @Override
     public void onMessage(Message message) {

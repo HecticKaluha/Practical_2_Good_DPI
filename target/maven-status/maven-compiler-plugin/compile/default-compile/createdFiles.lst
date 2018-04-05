@@ -7,14 +7,17 @@ forms\bank\JMSBankFrame.class
 forms\loanbroker\BankReplyListener.class
 forms\loanclient\LoanClientFrame$1.class
 mix\messaging\RequestReply.class
+forms\loanclient\LoanBrokerAppGateway.class
 forms\loanclient\LoanClientFrame.class
 mix\model\loan\LoanRequest.class
 forms\loanclient\LoanClientFrame$2.class
+connection\MessageReceiverGateway.class
 forms\bank\JMSBankFrame$2.class
 forms\loanbroker\LoanBrokerFrame.class
 forms\loanbroker\LoanRequestListener.class
 forms\bank\JMSBankFrame$1.class
 forms\loanbroker\LoanBrokerFrame$1.class
 mix\model\loan\LoanReply.class
+connection\MessageSenderGateway.class
 forms\loanbroker\JListLine.class
 forms\bank\BankLoanRequestListener.class

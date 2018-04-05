@@ -89,9 +89,9 @@ public class JMSBankFrame extends JFrame {
 		contentPane.add(tfReply, gbc_tfReply);
 		tfReply.setColumns(10);
 
-		blrl = new BankLoanRequestListener();
+		/*blrl = new BankLoanRequestListener();
 		blrl.setupMessageQueueConsumer();
-		blrl.setBf(this);
+		blrl.setBf(this);*/
 
 		JButton btnSendReply = new JButton("send reply");
 		btnSendReply.addActionListener(new ActionListener() {
