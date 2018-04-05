@@ -44,5 +44,6 @@ buildNumber.properties
 
 
 
-#idea ignoren
-.idea
+#idea ignore
+workspace.xml
+tasks.xml
