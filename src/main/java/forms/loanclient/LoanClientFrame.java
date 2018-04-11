@@ -2,6 +2,10 @@ package forms.loanclient;
 
 import connection.ConnectionManager;
 import exception.CouldNotCreateConnectionException;
+import forms.bank.JMSABNBank;
+import forms.bank.JMSINGBank;
+import forms.bank.JMSRaboBank;
+import forms.loanbroker.LoanBrokerFrame;
 import mix.messaging.RequestReply;
 import mix.model.bank.BankInterestReply;
 import mix.model.loan.LoanReply;
@@ -228,6 +232,19 @@ public class LoanClientFrame extends JFrame {
 				try {
 					LoanClientFrame frame = new LoanClientFrame();
 					frame.setVisible(true);
+
+					LoanBrokerFrame lbframe = new LoanBrokerFrame();
+					lbframe.setVisible(true);
+
+					JMSABNBank ABNframe = new JMSABNBank();
+					ABNframe.setVisible(true);
+
+					JMSRaboBank Raboframe = new JMSRaboBank();
+					Raboframe.setVisible(true);
+
+					JMSINGBank INGframe = new JMSINGBank();
+					INGframe.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

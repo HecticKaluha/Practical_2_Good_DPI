@@ -1,12 +1,9 @@
 package forms.bank;
 
-import connection.ConnectionManager;
 import connection.MessageSenderGateway;
-import exception.CouldNotCreateConnectionException;
 import mix.messaging.RequestReply;
 import mix.model.bank.BankInterestReply;
 import mix.model.bank.BankInterestRequest;
-import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
@@ -18,7 +15,7 @@ public class BankLoanRequestListener implements MessageListener {
 
     private ObjectMessage response =null;
 
-    private JMSBankFrame bf;
+    private JMSABNBank bf;
 
     public BankLoanRequestListener() {
 
@@ -84,11 +81,11 @@ public class BankLoanRequestListener implements MessageListener {
         }
     }
 
-    public JMSBankFrame getBf() {
+    public JMSABNBank getBf() {
         return bf;
     }
 
-    public void setBf(JMSBankFrame bf) {
+    public void setBf(JMSABNBank bf) {
         this.bf = bf;
     }
 }

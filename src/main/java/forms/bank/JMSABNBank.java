@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
-public class JMSBankFrame extends JFrame {
+public class JMSABNBank extends JFrame implements IBank {
 
 	/**
 	 * 
@@ -34,7 +34,7 @@ public class JMSBankFrame extends JFrame {
 			public void run() {
 				try {
 
-					JMSBankFrame frame = new JMSBankFrame();
+					JMSABNBank frame = new JMSABNBank();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class JMSBankFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JMSBankFrame() {
+	public JMSABNBank() {
 		setTitle("JMS Bank - ABN AMRO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(1300, 100, 450, 300);
@@ -90,7 +90,7 @@ public class JMSBankFrame extends JFrame {
 		contentPane.add(tfReply, gbc_tfReply);
 		tfReply.setColumns(10);
 
-		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("BankToBroker");
+		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("ToBroker");
 		loanBrokerFromBankAppGateway.setBankFrame(this);
 		/*blrl = new BankLoanRequestListener();
 		blrl.setupMessageQueueConsumer();
@@ -116,6 +116,8 @@ public class JMSBankFrame extends JFrame {
 		gbc_btnSendReply.gridy = 1;
 		contentPane.add(btnSendReply, gbc_btnSendReply);
 	}
+
+	@Override
 	public void add(BankInterestRequest bankInterestRequest){
 		listModel.addElement(new RequestReply<>(bankInterestRequest, null));
 	}

@@ -15,12 +15,12 @@ public class LoanBrokerFromBankAppGateway implements MessageListener {
     private MessageSenderGateway sender;
     private MessageReceiverGateway receiver;
     private String channelName;
-    private JMSBankFrame bankFrame;
+    private IBank bankFrame;
 
-    public LoanBrokerFromBankAppGateway(String channelName) {
+    public LoanBrokerFromBankAppGateway(String BrokerToBank) {
         this.channelName = channelName;
-        sender = new MessageSenderGateway(channelName);
-        receiver = new MessageReceiverGateway("BrokerToBank");
+        sender = new MessageSenderGateway("BankToBroker");
+        receiver = new MessageReceiverGateway(BrokerToBank);
         receiver.setListerner(this);
     }
     public void sendBankReply(RequestReply<BankInterestRequest, BankInterestReply> bankreply)
@@ -46,7 +46,7 @@ public class LoanBrokerFromBankAppGateway implements MessageListener {
         }
     }
 
-    public void setBankFrame(JMSBankFrame bf) {
+    public void setBankFrame(IBank bf) {
         this.bankFrame = bf;
     }
 }
