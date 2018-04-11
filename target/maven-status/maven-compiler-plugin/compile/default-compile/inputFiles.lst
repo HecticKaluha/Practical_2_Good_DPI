@@ -15,6 +15,7 @@ C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\mix
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\connection\MessageSenderGateway.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\exception\CouldNotCreateConnectionException.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\mix\model\bank\BankInterestRequest.java
+C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\loanbroker\AggregationProcessor.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\bank\BankLoanRequestListener.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\bank\JMSRaboBank.java
 C:\Users\stefa\OneDrive\Documenten\GitHub\Practical_2_Good_DPI\src\main\java\forms\bank\JMSABNBank.java

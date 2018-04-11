@@ -29,6 +29,7 @@ forms\bank\JMSINGBank$2.class
 forms\loanbroker\BankAppGateway.class
 connection\MessageReceiverGateway.class
 forms\loanbroker\LoanRequestListener.class
+forms\loanbroker\AggregationProcessor.class
 forms\bank\JMSABNBank$1.class
 forms\bank\BankLoanRequestListener.class
 forms\bank\IBank.class

@@ -101,7 +101,7 @@ public class JMSABNBank extends JFrame implements IBank {
 			public void actionPerformed(ActionEvent e) {
 				RequestReply<BankInterestRequest, BankInterestReply> rr = list.getSelectedValue();
 				double interest = Double.parseDouble((tfReply.getText()));
-				BankInterestReply reply = new BankInterestReply(interest,"ABN AMRO");
+				BankInterestReply reply = new BankInterestReply(interest,"BrokerToABN", rr.getRequest().getId());
 				if (rr!= null && reply != null){
 					rr.setReply(reply);
 					loanBrokerFromBankAppGateway.sendBankReply(rr);

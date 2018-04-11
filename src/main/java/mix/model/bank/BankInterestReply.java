@@ -11,6 +11,7 @@ public class BankInterestReply implements Serializable {
 
     private double interest; // the loan interest
     private String bankId; // the nunique quote Id
+    private int id;
     
     public BankInterestReply() {
         this.interest = 0;
@@ -20,6 +21,12 @@ public class BankInterestReply implements Serializable {
     public BankInterestReply(double interest, String quoteId) {
         this.interest = interest;
         this.bankId = quoteId;
+    }
+
+    public BankInterestReply(double interest, String quoteId, int id) {
+        this.interest = interest;
+        this.bankId = quoteId;
+        this.id = id;
     }
 
     public double getInterest() {
@@ -36,6 +43,14 @@ public class BankInterestReply implements Serializable {
 
     public void setQuoteId(String quoteId) {
         this.bankId = quoteId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String toString() {

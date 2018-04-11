@@ -13,9 +13,12 @@ import java.util.List;
 public class RecipientProcessor {
 
     private BankAppGateway bankAppGateway;
+    private AggregationProcessor aggrogationProcessor;
 
     public RecipientProcessor(LoanBrokerFrame frame) {
-        bankAppGateway = new BankAppGateway();
+
+        aggrogationProcessor = new AggregationProcessor(frame);
+        bankAppGateway = new BankAppGateway(aggrogationProcessor);
     }
 
     public void sendToBank(BankInterestRequest bir)
@@ -27,6 +30,7 @@ public class RecipientProcessor {
         {
             bankAppGateway.setSender(new MessageSenderGateway(availableBank));
             bankAppGateway.sendBankRequest(bir);
+            aggrogationProcessor.setRecipients(bir, availableBank);
         }
     }
 
@@ -46,6 +50,7 @@ public class RecipientProcessor {
         {
             availableBanks.add("BrokerToRabo");
         }
+
         return availableBanks;
     }
 }

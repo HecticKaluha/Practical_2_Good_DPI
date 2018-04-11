@@ -16,6 +16,7 @@ public class BankAppGateway implements MessageListener{
     private MessageReceiverGateway receiver;
     private String channelName;
     private LoanBrokerFrame laonBrokerFrame;
+    private AggregationProcessor aggregationProcessor;
 
     public BankAppGateway(String channelName) {
         this.channelName = channelName;
@@ -23,14 +24,18 @@ public class BankAppGateway implements MessageListener{
         receiver = new MessageReceiverGateway("BankToBroker");
         receiver.setListerner(this);
     }
-    public BankAppGateway()
+    public BankAppGateway(AggregationProcessor aggregationProcessor)
     {
         receiver = new MessageReceiverGateway("BankToBroker");
         receiver.setListerner(this);
+        this.aggregationProcessor = aggregationProcessor;
     }
+
     public void sendBankRequest(BankInterestRequest request)
     {
-        sender.send(sender.createObjectMessage(request));
+        request.setId(request.getTime());
+        ObjectMessage om = sender.createObjectMessage(request);
+        sender.send(om);
     }
 
     @Override
@@ -39,13 +44,19 @@ public class BankAppGateway implements MessageListener{
             if (message instanceof ObjectMessage) {
                 System.out.print("\n I got your BankReply! The Reply was: " + message.toString());
                 RequestReply<BankInterestRequest, BankInterestReply> rr = (RequestReply<BankInterestRequest, BankInterestReply>) ((ObjectMessage) message).getObject();
-                LoanRequest lr = new LoanRequest();
+                aggregationProcessor.setMessage(rr);
+
+
+                /*LoanRequest lr = new LoanRequest();
                 lr.setAmount(rr.getRequest().getAmount());
                 lr.setTime(rr.getRequest().getTime());
 
                 laonBrokerFrame.add(lr, rr.getReply());
                 //send reply from bank to client
-                laonBrokerFrame.sendToClient(rr);
+                laonBrokerFrame.sendToClient(rr);*/
+
+
+
                 //sendReplyToClient(rr);
             } else {
                 System.out.print("\n Something went wrong while de-enqueueing the message");

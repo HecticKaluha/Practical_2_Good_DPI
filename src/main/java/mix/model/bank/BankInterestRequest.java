@@ -11,6 +11,7 @@ public class BankInterestRequest implements Serializable{
 
     private int amount; // the requested loan amount
     private int time; // the requested loan period
+    private int id;
 
     public BankInterestRequest() {
         super();
@@ -22,6 +23,13 @@ public class BankInterestRequest implements Serializable{
         super();
         this.amount = amount;
         this.time = time;
+    }
+
+    public BankInterestRequest(int amount, int time, int id) {
+        super();
+        this.amount = amount;
+        this.time = time;
+        this.id = id;
     }
 
     public int getAmount() {
@@ -39,6 +47,14 @@ public class BankInterestRequest implements Serializable{
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
