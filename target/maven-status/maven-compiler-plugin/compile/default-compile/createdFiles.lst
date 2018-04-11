@@ -21,6 +21,7 @@ forms\bank\JMSINGBank$1.class
 connection\MessageSenderGateway.class
 forms\loanbroker\JListLine.class
 exception\CouldNotCreateConnectionException.class
+forms\loanbroker\RecipientProcessor.class
 mix\model\bank\BankInterestRequest.class
 mix\model\bank\BankInterestReply.class
 forms\loanclient\LoanClientFrame.class

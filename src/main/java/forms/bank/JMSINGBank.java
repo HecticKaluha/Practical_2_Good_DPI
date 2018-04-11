@@ -89,7 +89,7 @@ public class JMSINGBank extends JFrame implements IBank {
 		contentPane.add(tfReply, gbc_tfReply);
 		tfReply.setColumns(10);
 
-		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("INGkToBroker");
+		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("BrokerToING");
 		loanBrokerFromBankAppGateway.setBankFrame(this);
 		/*blrl = new BankLoanRequestListener();
 		blrl.setupMessageQueueConsumer();

@@ -89,7 +89,7 @@ public class JMSRaboBank extends JFrame implements IBank{
 		contentPane.add(tfReply, gbc_tfReply);
 		tfReply.setColumns(10);
 
-		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("RaboBankToBroker");
+		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("BrokerToRabo");
 		loanBrokerFromBankAppGateway.setBankFrame(this);
 		/*blrl = new BankLoanRequestListener();
 		blrl.setupMessageQueueConsumer();

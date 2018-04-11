@@ -23,6 +23,11 @@ public class BankAppGateway implements MessageListener{
         receiver = new MessageReceiverGateway("BankToBroker");
         receiver.setListerner(this);
     }
+    public BankAppGateway()
+    {
+        receiver = new MessageReceiverGateway("BankToBroker");
+        receiver.setListerner(this);
+    }
     public void sendBankRequest(BankInterestRequest request)
     {
         sender.send(sender.createObjectMessage(request));
@@ -54,9 +59,19 @@ public class BankAppGateway implements MessageListener{
         this.laonBrokerFrame = lbf;
     }
 
+    public MessageSenderGateway getSender() {
+        return sender;
+    }
 
+    public void setSender(MessageSenderGateway sender) {
+        this.sender = sender;
+    }
 
+    public MessageReceiverGateway getReceiver() {
+        return receiver;
+    }
 
-
-
+    public void setReceiver(MessageReceiverGateway receiver) {
+        this.receiver = receiver;
+    }
 }

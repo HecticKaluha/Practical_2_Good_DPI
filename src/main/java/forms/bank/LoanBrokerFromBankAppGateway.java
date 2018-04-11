@@ -14,11 +14,9 @@ public class LoanBrokerFromBankAppGateway implements MessageListener {
 
     private MessageSenderGateway sender;
     private MessageReceiverGateway receiver;
-    private String channelName;
     private IBank bankFrame;
 
     public LoanBrokerFromBankAppGateway(String BrokerToBank) {
-        this.channelName = channelName;
         sender = new MessageSenderGateway("BankToBroker");
         receiver = new MessageReceiverGateway(BrokerToBank);
         receiver.setListerner(this);

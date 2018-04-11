@@ -1,5 +1,6 @@
 package forms.loanbroker;
 
+import forms.bank.IBank;
 import forms.loanclient.LoanBrokerAppGateway;
 import mix.messaging.RequestReply;
 import mix.model.bank.BankInterestReply;
@@ -26,8 +27,9 @@ public class LoanBrokerFrame extends JFrame{
 	private static JScrollPane scrollPane;
 	private static LoanRequestListener ml;
 	private static BankReplyListener bl;
-	private BankAppGateway bankAppGateway;
+//	private BankAppGateway bankAppGateway;
 	private ClientAppGateway clientAppGateway;
+	private RecipientProcessor recipientProcessor;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -72,10 +74,11 @@ public class LoanBrokerFrame extends JFrame{
 		list = new JList<JListLine>(listModel);
 		scrollPane.setViewportView(list);
 
-		bankAppGateway = new BankAppGateway("BrokerToBank");
+		//bankAppGateway = new BankAppGateway("BrokerToBank");
 		clientAppGateway = new ClientAppGateway("BrokerToClient");
+		recipientProcessor = new RecipientProcessor(this);
 
-		bankAppGateway.setLoanBrokerFrame(this);
+		//bankAppGateway.setLoanBrokerFrame(this);
 		clientAppGateway.setLoanBrokerFrame(this);
 
 		/*ml = new LoanRequestListener();
@@ -121,9 +124,11 @@ public class LoanBrokerFrame extends JFrame{
 	{
 		clientAppGateway.sendLoanReply(bankreply);
 	}
+
 	public void senToBank(LoanRequest loanrequest)
 	{
 		BankInterestRequest bir = new BankInterestRequest(loanrequest.getAmount(), loanrequest.getTime());
-		bankAppGateway.sendBankRequest(bir);
+		recipientProcessor.sendToBank(bir);
+		//bankAppGateway.sendBankRequest(bir);
 	}
 }

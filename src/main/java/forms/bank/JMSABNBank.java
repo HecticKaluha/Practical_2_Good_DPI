@@ -90,7 +90,7 @@ public class JMSABNBank extends JFrame implements IBank {
 		contentPane.add(tfReply, gbc_tfReply);
 		tfReply.setColumns(10);
 
-		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("ToBroker");
+		loanBrokerFromBankAppGateway = new LoanBrokerFromBankAppGateway("BrokerToABN");
 		loanBrokerFromBankAppGateway.setBankFrame(this);
 		/*blrl = new BankLoanRequestListener();
 		blrl.setupMessageQueueConsumer();
