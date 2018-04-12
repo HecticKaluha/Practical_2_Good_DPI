@@ -1,8 +1,6 @@
 forms\bank\JMSABNBank.class
-forms\loanclient\BrokerReplyListener.class
 forms\bank\JMSRaboBank.class
 connection\ConnectionManager.class
-forms\loanbroker\BankReplyListener.class
 forms\loanclient\LoanClientFrame$1.class
 mix\messaging\RequestReply.class
 forms\bank\JMSINGBank.class
@@ -28,8 +26,6 @@ forms\loanclient\LoanClientFrame.class
 forms\bank\JMSINGBank$2.class
 forms\loanbroker\BankAppGateway.class
 connection\MessageReceiverGateway.class
-forms\loanbroker\LoanRequestListener.class
 forms\loanbroker\AggregationProcessor.class
 forms\bank\JMSABNBank$1.class
-forms\bank\BankLoanRequestListener.class
 forms\bank\IBank.class

@@ -24,7 +24,6 @@ public class JMSABNBank extends JFrame implements IBank {
 	private DefaultListModel<RequestReply<BankInterestRequest, BankInterestReply>> listModel = new DefaultListModel<RequestReply<BankInterestRequest, BankInterestReply>>();
 	private LoanBrokerFromBankAppGateway loanBrokerFromBankAppGateway;
 
-	private static BankLoanRequestListener blrl;
 	
 	/**
 	 * Launch the application.

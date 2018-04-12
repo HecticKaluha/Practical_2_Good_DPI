@@ -25,8 +25,6 @@ public class LoanBrokerFrame extends JFrame{
 	private DefaultListModel<JListLine> listModel = new DefaultListModel<JListLine>();
 	private JList<JListLine> list;
 	private static JScrollPane scrollPane;
-	private static LoanRequestListener ml;
-	private static BankReplyListener bl;
 //	private BankAppGateway bankAppGateway;
 	private ClientAppGateway clientAppGateway;
 	private RecipientProcessor recipientProcessor;

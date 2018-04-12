@@ -40,7 +40,6 @@ public class LoanClientFrame extends JFrame {
 
 	private LoanBrokerAppGateway loanBrokerAppGateway;
 
-	private static BrokerReplyListener bl;
 
 	private String correlationID = "Stefano";
 
