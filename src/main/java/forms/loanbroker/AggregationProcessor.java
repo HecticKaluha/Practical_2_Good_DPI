@@ -5,6 +5,7 @@ import mix.model.bank.BankInterestReply;
 import mix.model.bank.BankInterestRequest;
 import mix.model.loan.LoanRequest;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class AggregationProcessor {
@@ -14,6 +15,7 @@ public class AggregationProcessor {
 
     public AggregationProcessor(LoanBrokerFrame frame) {
         this.frame = frame;
+        this.received = new HashMap<>();
     }
 
     public void setMessage(RequestReply<BankInterestRequest, BankInterestReply> rr)
@@ -23,17 +25,16 @@ public class AggregationProcessor {
         {
             if(rr.getReply().getId() == entry.getKey().getRequest().getId())
             {
-                if(rr.getReply().getQuoteId().equals(entry.getKey().getReply().getQuoteId()))
+                if(rr.getReply().getQuoteId().equals(entry.getValue()))
                 {
-                    entry.setValue(rr.getReply().getQuoteId());
+                    entry.getKey().setReply(rr.getReply());
                 }
                 else if (entry.getKey().getReply() == null) allReplies = false;
             }
-
-            if(allReplies)
-            {
-                setFrame(rr);
-            }
+        }
+        if(allReplies)
+        {
+            updateList(rr);
         }
     }
 
@@ -42,22 +43,24 @@ public class AggregationProcessor {
         received.put(new RequestReply<BankInterestRequest, BankInterestReply>(bankInterestRequest, null), sentTo);
     }
 
-    public void setFrame(RequestReply<BankInterestRequest, BankInterestReply> rr)
+    public void updateList(RequestReply<BankInterestRequest, BankInterestReply> rr)
     {
-        RequestReply<BankInterestRequest, BankInterestReply> bestbir = rr;
+        RequestReply<BankInterestRequest, BankInterestReply> bestrr = rr;
         for(Map.Entry<RequestReply<BankInterestRequest, BankInterestReply>, String> entry: received.entrySet())
         {
-            if(bestbir.getReply().getInterest() < entry.getKey().getReply().getInterest())
+            if(entry.getKey().getReply().getInterest() < bestrr.getReply().getInterest() && entry.getKey().getReply().getId() == rr.getReply().getId())
             {
-                bestbir = entry.getKey();
+                bestrr = entry.getKey();
             }
         }
 
         LoanRequest lr = new LoanRequest();
-        lr.setAmount(bestbir.getRequest().getAmount());
-        lr.setTime(bestbir.getRequest().getTime());
+        lr.setAmount(bestrr.getRequest().getAmount());
+        lr.setTime(bestrr.getRequest().getTime());
 
-        frame.add(lr, bestbir.getReply());
+        frame.add(lr, bestrr.getReply());
+        frame.sendToClient(bestrr);
+        //send to client
     }
 
 

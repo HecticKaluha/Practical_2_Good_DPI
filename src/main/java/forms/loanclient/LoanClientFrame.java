@@ -233,7 +233,7 @@ public class LoanClientFrame extends JFrame {
 					LoanClientFrame frame = new LoanClientFrame();
 					frame.setVisible(true);
 
-					LoanBrokerFrame lbframe = new LoanBrokerFrame();
+					/*LoanBrokerFrame lbframe = new LoanBrokerFrame();
 					lbframe.setVisible(true);
 
 					JMSABNBank ABNframe = new JMSABNBank();
@@ -243,7 +243,7 @@ public class LoanClientFrame extends JFrame {
 					Raboframe.setVisible(true);
 
 					JMSINGBank INGframe = new JMSINGBank();
-					INGframe.setVisible(true);
+					INGframe.setVisible(true);*/
 
 				} catch (Exception e) {
 					e.printStackTrace();
